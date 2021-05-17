@@ -69,19 +69,19 @@ class Share {
 }
 
 class _FavoriteIconState extends State<FavoriteIcon> {
-  bool firsttime = false;
+  bool change = false;
 
   @override
   void didChangeDependencies() async {
     var sharedPref = await SharedPreferences.getInstance();
 
     setState(() {
-      this.firsttime = sharedPref.getBool(Share.firsttime);
-      if (this.firsttime == null) {
-        this.firsttime = false;
+      this.change = sharedPref.getBool(Share.firsttime);
+      if (this.change == null) {
+        this.change = false;
       }
     });
-    sharedPref.setBool(Share.firsttime, !this.firsttime);
+    sharedPref.setBool(Share.firsttime, !this.change);
 
     super.didChangeDependencies();
   }
@@ -89,7 +89,7 @@ class _FavoriteIconState extends State<FavoriteIcon> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        child: (firsttime)
+        child: (change)
             ? Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
